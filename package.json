@@ -54,6 +54,9 @@
     "last 2 versions",
     "not ie <= 10"
   ],
+  "files": [
+    "dist/"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
