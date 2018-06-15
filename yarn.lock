@@ -2591,6 +2591,10 @@ flow-parser@^0.*:
   version "0.74.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.74.0.tgz#4acc8f55bdce5fa4da43c72c28ef8a9600ace87c"
 
+flush-promises@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/flush-promises/-/flush-promises-1.0.0.tgz#8fd4d3aeb3f7f57a713aca40f1526ef25463fa23"
+
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
@@ -4435,6 +4439,10 @@ move-concurrently@^1.0.1:
     mkdirp "^0.5.1"
     rimraf "^2.5.4"
     run-queue "^1.0.3"
+
+moxios@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/moxios/-/moxios-0.4.0.tgz#fc0da2c65477d725ca6b9679d58370ed0c52f53b"
 
 ms@2.0.0:
   version "2.0.0"
@@ -6329,9 +6337,9 @@ vue@^2.5.3:
   version "2.5.16"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
 
-vuex-xhr-state@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/vuex-xhr-state/-/vuex-xhr-state-0.0.10.tgz#7c34b14d644e21ff09e878d63c6530a0f4553f72"
+vuex-xhr-state@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/vuex-xhr-state/-/vuex-xhr-state-0.0.14.tgz#c011a5ebc023760e1524ca9acf1c1070ae361f6d"
   dependencies:
     js-md5 "^0.7.2"
     vue "^2.5.3"
