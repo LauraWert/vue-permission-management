@@ -5,7 +5,7 @@ import store from 'test/fake/store'
 import { permissionPolicy, createGlobalPolicy, createCrudPermissionPolicy } from 'src'
 import { loadPermissions } from 'src/feature/permissions'
 import moxios from 'moxios'
-import addApiCalls from 'src/domains/api/add-api-calls'
+import addApiCalls from 'src/domains/api/jobs/add-api-calls'
 
 describe('policies', () => {
   beforeEach(() => {

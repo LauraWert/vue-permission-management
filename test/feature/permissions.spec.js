@@ -3,7 +3,7 @@ import store from 'test/fake/store'
 import api from 'test/fake/api-client'
 import { setConfig } from 'src/domains/config'
 import moxios from 'moxios'
-import addApiCalls from 'src/domains/api/add-api-calls'
+import addApiCalls from 'src/domains/api/jobs/add-api-calls'
 
 describe('permissions', () => {
   beforeEach(() => {

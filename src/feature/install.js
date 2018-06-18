@@ -1,6 +1,6 @@
 import VueAcl from 'vue-browser-acl'
 import { setConfig } from 'src/domains/config'
-import addApiCalls from 'src/domains/api/add-api-calls'
+import addApiCalls from 'src/domains/api/jobs/add-api-calls'
 
 export default {
   install: function (Vue, router, store, policySetter, api, getCurrentUserResolver, getCurrentUserIdResolver, isAuthenticatedResolver, options = {}) {

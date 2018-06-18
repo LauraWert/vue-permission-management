@@ -1,4 +1,4 @@
-import permissionsContains from 'src/domains/permissions/permissions-contains'
+import permissionsContains from 'src/domains/permissions/jobs/permissions-contains'
 
 describe('permissions-contains', () => {
   it('return true when permission in permissions', () => {

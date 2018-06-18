@@ -1,4 +1,4 @@
-import { MockedUserPermissions } from 'src/domains/permissions/mocked-user-permissions'
+import { MockedUserPermissions } from 'src/domains/permissions/jobs/mocked-user-permissions'
 
 let testMockedUserPermissions
 
