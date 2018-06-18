@@ -1,8 +1,10 @@
 import { MockedUserPermissions } from 'src/domains/permissions/jobs/mocked-user-permissions'
-import { isAuthenticated, getCurrentUserId, store } from 'src/domains/config'
+import { store } from 'src/domains/config'
 import getStorePermissions from 'src/domains/permissions/jobs/get-store-permissions'
 import permissionsContains from 'src/domains/permissions/jobs/permissions-contains'
 import loadStorePermissions from 'src/domains/permissions/jobs/load-store-permissions'
+import getCurrentUserId from 'src/domains/auth/jobs/get-current-user-id'
+import isAuthenticated from 'src/domains/auth/jobs/is-authenticated'
 
 export function mockUserPermissions (permissions) {
   if (!isAuthenticated()) throw new Error('Mocking permissions without being authenticated')

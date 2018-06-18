@@ -1,5 +1,7 @@
 import installer from 'src'
-import { isAuthenticated, getCurrentUserId, store, api } from 'src/domains/config'
+import { store, api } from 'src/domains/config'
+import getCurrentUserId from 'src/domains/auth/jobs/get-current-user-id'
+import isAuthenticated from 'src/domains/auth/jobs/is-authenticated'
 
 jest.mock('vue-browser-acl', () => ({_name: 'vueBrowserAclMock'}))
 
@@ -20,23 +22,23 @@ describe('install', () => {
     const apiMock = {
       _name: 'api',
     }
-    const getCurrentUserResolver = {
+    const getCurrentUserResolver = () => ({
       _name: 'getCurrentUserResolver',
-    }
-    const getCurrentUserIdResolver = {
-      _name: 'getCurrentUserIdResolver',
-    }
-    const isAuthenticatedResolver = {
+    })
+    const currentUserIdResolver = () => ({
+      _name: 'currentUserIdResolver',
+    })
+    const isAuthenticatedResolver = () => ({
       _name: 'isAuthenticatedResolver',
-    }
+    })
     const options = {
       _name: 'options',
     }
 
-    installer.install(VueMock, router, storeMock, policySetter, apiMock, getCurrentUserResolver, getCurrentUserIdResolver, isAuthenticatedResolver, options)
+    installer.install(VueMock, router, storeMock, policySetter, apiMock, getCurrentUserResolver, currentUserIdResolver, isAuthenticatedResolver, options)
 
-    expect(isAuthenticated).toBe(isAuthenticatedResolver)
-    expect(getCurrentUserId).toBe(getCurrentUserIdResolver)
+    expect(isAuthenticated()).toEqual(isAuthenticatedResolver())
+    expect(getCurrentUserId()).toEqual(currentUserIdResolver())
     expect(store).toBe(storeMock)
     expect(api).toBe(apiMock)
 

@@ -1,4 +1,4 @@
-import { setConfig, isAuthenticated, getCurrentUserId, store, api } from 'src/domains/config'
+import { setConfig, store, api } from 'src/domains/config'
 
 describe('config', () => {
   it('sets global variables', () => {
@@ -8,17 +8,17 @@ describe('config', () => {
     const apiMock = {
       _name: 'api',
     }
-    const getCurrentUserIdResolver = {
-      _name: 'getCurrentUserIdResolver',
-    }
-    const isAuthenticatedResolver = {
-      _name: 'isAuthenticatedResolver',
-    }
+    // const getCurrentUserIdResolver = () => ({
+    //   _name: 'currentUserIdResolver',
+    // })
+    // const isAuthenticatedResolver = {
+    //   _name: 'isAuthenticatedResolver',
+    // }
 
-    setConfig(storeMock, apiMock, getCurrentUserIdResolver, isAuthenticatedResolver)
+    setConfig(storeMock, apiMock)
 
-    expect(isAuthenticated).toBe(isAuthenticatedResolver)
-    expect(getCurrentUserId).toBe(getCurrentUserIdResolver)
+    // expect(isAuthenticated).toBe(isAuthenticatedResolver)
+    // expect(getCurrentUserId()).toEqual(getCurrentUserIdResolver())
     expect(store).toBe(storeMock)
     expect(api).toBe(apiMock)
   })

@@ -4,20 +4,21 @@ import api from 'test/fake/api-client'
 import { setConfig } from 'src/domains/config'
 import moxios from 'moxios'
 import addApiCalls from 'src/domains/api/jobs/add-api-calls'
+import setCurrentUserIdResolver from 'src/domains/auth/jobs/set-current-user-id-resolver'
+import setIsAuthenticatedResolver from 'src/domains/auth/jobs/set-is-authenticated-resolver'
 
 describe('permissions', () => {
   beforeEach(() => {
     moxios.install(api)
+    setCurrentUserIdResolver(() => {
+      return 123 // userIdResolver
+    })
+    setIsAuthenticatedResolver(() => {
+      return true
+    })
     setConfig(
       store,
       api,
-      function () {
-        return 123 // userIdResolver
-      },
-      function () {
-        return true // isAuthenticatedResolver
-      },
-      {}, // options
     )
     addApiCalls(api)
   })

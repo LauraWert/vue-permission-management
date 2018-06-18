@@ -1,5 +1,5 @@
 import { hasPermission } from './permissions'
-import { isAuthenticated } from 'src/domains/config'
+import isAuthenticated from 'src/domains/auth/jobs/is-authenticated'
 
 export function permissionPolicy (verb, noun) {
   return () => isAuthenticated() && hasPermission(verb, noun)

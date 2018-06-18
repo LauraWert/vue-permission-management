@@ -6,6 +6,8 @@ import { permissionPolicy, createGlobalPolicy, createCrudPermissionPolicy } from
 import { loadPermissions } from 'src/feature/permissions'
 import moxios from 'moxios'
 import addApiCalls from 'src/domains/api/jobs/add-api-calls'
+import setCurrentUserIdResolver from 'src/domains/auth/jobs/set-current-user-id-resolver'
+import setIsAuthenticatedResolver from 'src/domains/auth/jobs/set-is-authenticated-resolver'
 
 describe('policies', () => {
   beforeEach(() => {
@@ -81,12 +83,12 @@ function setTestConfig (authResult) {
   setConfig(
     store,
     api,
-    function () {
-      return 123 // userIdResolver
-    },
-    function () {
-      return authResult // isAuthenticatedResolver
-    },
   )
+  setCurrentUserIdResolver(() => {
+    return 123 // userIdResolver
+  })
+  setIsAuthenticatedResolver(() => {
+    return authResult // isAuthenticatedResolver
+  })
   addApiCalls(api)
 }
