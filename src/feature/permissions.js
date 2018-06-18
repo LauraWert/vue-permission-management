@@ -1,26 +1,22 @@
-import { readPermissions } from 'src/store/permission'
+import { MockedUserPermissions } from 'src/domains/permissions/mocked-permissions'
 import { isAuthenticated, getCurrentUserId, store } from 'src/domains/config'
 import getStorePermissions from 'src/domains/permissions/get-store-permissions'
 import permissionsContains from 'src/domains/permissions/permissions-contains'
 import loadStorePermissions from 'src/domains/permissions/load-store-permissions'
 
+export function mockUserPermissions (permissions) {
+  if (!isAuthenticated()) throw new Error('Mocking permissions without being authenticated')
+  MockedUserPermissions.set(permissions)
+}
 
+export function resetUserPermissions () {
+  MockedUserPermissions.reset()
+}
 
-// let mockPermissions = null
-
-// export function mockUserPermissions (permissions) {
-//   if (!isAuthenticated()) throw new Error('Mocking permissions without being authenticated')
-//   mockPermissions = permissions
-// }
-
-// export function resetUserPermissions () {
-//   mockPermissions = null
-// }
-
-// function getPermissions () {
-//   if (mockPermissions !== null) return mockPermissions
-//   return getStorePermissions(store, getCurrentUserId())
-// }
+function getPermissions () {
+  if (MockedUserPermissions.get() !== null) return MockedUserPermissions.get()
+  return getStorePermissions(store, getCurrentUserId())
+}
 
 export function hasPermission (verb, noun) {
   const perms = getStorePermissions(store, getCurrentUserId())
