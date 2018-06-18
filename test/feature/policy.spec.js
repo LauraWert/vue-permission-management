@@ -1,5 +1,4 @@
 // import { permissionPolicy, createGlobalPolicy, loadStorePermissions, createCrudPermissionPolicy } from 'src'
-import { setConfig } from 'src/domains/config'
 import api from 'test/fake/api-client'
 import store from 'test/fake/store'
 import { permissionPolicy, createGlobalPolicy, createCrudPermissionPolicy } from 'src'
@@ -8,6 +7,8 @@ import moxios from 'moxios'
 import addApiCalls from 'src/domains/api/jobs/add-api-calls'
 import setCurrentUserIdResolver from 'src/domains/auth/jobs/set-current-user-id-resolver'
 import setIsAuthenticatedResolver from 'src/domains/auth/jobs/set-is-authenticated-resolver'
+import setProjectApi from 'src/domains/api/jobs/set-project-api'
+import setProjectStore from 'src/domains/store/jobs/set-project-store'
 
 describe('policies', () => {
   beforeEach(() => {
@@ -80,15 +81,14 @@ describe('policies', () => {
 })
 
 function setTestConfig (authResult) {
-  setConfig(
-    store,
-    api,
-  )
+  addApiCalls(api)
+
+  setProjectApi(api)
+  setProjectStore(store)
   setCurrentUserIdResolver(() => {
     return 123 // userIdResolver
   })
   setIsAuthenticatedResolver(() => {
     return authResult // isAuthenticatedResolver
   })
-  addApiCalls(api)
 }

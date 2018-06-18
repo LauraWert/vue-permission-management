@@ -1,5 +1,5 @@
 import { MockedUserPermissions } from 'src/domains/permissions/jobs/mocked-user-permissions'
-import { store } from 'src/domains/config'
+import getProjectStore from 'src/domains/store/jobs/get-project-store'
 import getStorePermissions from 'src/domains/permissions/jobs/get-store-permissions'
 import permissionsContains from 'src/domains/permissions/jobs/permissions-contains'
 import loadStorePermissions from 'src/domains/permissions/jobs/load-store-permissions'
@@ -17,7 +17,7 @@ export function resetUserPermissions () {
 
 function getPermissions () {
   if (MockedUserPermissions.get() !== null) return MockedUserPermissions.get()
-  return getStorePermissions(store, getCurrentUserId())
+  return getStorePermissions(getProjectStore(), getCurrentUserId())
 }
 
 export function hasPermission (verb, noun) {
@@ -30,5 +30,5 @@ export function loadPermissions () {
     return new Promise(resolve => resolve([]))
   }
 
-  return loadStorePermissions(store, getCurrentUserId())
+  return loadStorePermissions(getProjectStore(), getCurrentUserId())
 }

@@ -1,9 +1,9 @@
-import { api } from 'src/domains/config'
+import getProjectApi from 'src/domains/api/jobs/get-project-api'
 import { VuexXhrCreator, VuexXhrGet } from 'vuex-xhr-state'
 
 export const readPermissions = new VuexXhrGet({
   method: (userId) => {
-    return api.readPermissions(userId)
+    return getProjectApi().readPermissions(userId)
   },
   default: [],
 })

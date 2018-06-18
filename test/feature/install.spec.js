@@ -1,7 +1,8 @@
 import installer from 'src'
-import { store, api } from 'src/domains/config'
 import getCurrentUserId from 'src/domains/auth/jobs/get-current-user-id'
 import isAuthenticated from 'src/domains/auth/jobs/is-authenticated'
+import getProjectApi from 'src/domains/api/jobs/get-project-api'
+import getProjectStore from 'src/domains/store/jobs/get-project-store'
 
 jest.mock('vue-browser-acl', () => ({_name: 'vueBrowserAclMock'}))
 
@@ -39,8 +40,8 @@ describe('install', () => {
 
     expect(isAuthenticated()).toEqual(isAuthenticatedResolver())
     expect(getCurrentUserId()).toEqual(currentUserIdResolver())
-    expect(store).toBe(storeMock)
-    expect(api).toBe(apiMock)
+    expect(getProjectStore()).toBe(storeMock)
+    expect(getProjectApi()).toBe(apiMock)
 
     expect(VueMock.use).toBeCalledWith(
       {_name: 'vueBrowserAclMock'},

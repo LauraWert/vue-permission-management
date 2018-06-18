@@ -1,26 +1,26 @@
 import { hasPermission, mockUserPermissions, loadPermissions, resetUserPermissions } from 'src'
 import store from 'test/fake/store'
 import api from 'test/fake/api-client'
-import { setConfig } from 'src/domains/config'
 import moxios from 'moxios'
 import addApiCalls from 'src/domains/api/jobs/add-api-calls'
 import setCurrentUserIdResolver from 'src/domains/auth/jobs/set-current-user-id-resolver'
 import setIsAuthenticatedResolver from 'src/domains/auth/jobs/set-is-authenticated-resolver'
+import setProjectApi from 'src/domains/api/jobs/set-project-api'
+import setProjectStore from 'src/domains/store/jobs/set-project-store'
 
 describe('permissions', () => {
   beforeEach(() => {
     moxios.install(api)
+    addApiCalls(api)
+
+    setProjectApi(api)
+    setProjectStore(store)
     setCurrentUserIdResolver(() => {
       return 123 // userIdResolver
     })
     setIsAuthenticatedResolver(() => {
       return true
     })
-    setConfig(
-      store,
-      api,
-    )
-    addApiCalls(api)
   })
 
   afterEach(() => {
