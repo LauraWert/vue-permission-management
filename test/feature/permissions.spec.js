@@ -62,7 +62,6 @@ describe('permissions', () => {
     expect(hasPermission('c', 'mockPermission')).toBe(false)
     expect(hasPermission('c', 'apiPermission2')).toBe(true)
   })
-
 })
 
 function mockPermissionApiCall (response) {

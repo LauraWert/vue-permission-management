@@ -5,7 +5,6 @@ jest.mock('vue-browser-acl', () => ({_name: 'vueBrowserAclMock'}))
 
 describe('install', () => {
   it('can install the package', () => {
-
     const VueMock = {
       use: jest.fn(),
     }

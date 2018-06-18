@@ -1,5 +1,5 @@
 import getStorePermissions from 'src/domains/permissions/get-store-permissions'
-import { readPermissions } from 'src/store/permission'
+import { readPermissions } from 'src/domains//store/permission'
 
 describe('get-store-permissions', () => {
   it('can get permissions from the store', () => {

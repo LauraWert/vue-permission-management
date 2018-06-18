@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueXhrState from 'vuex-xhr-state'
-import { permissionManagementStorePlugins } from 'src/store'
+import { permissionManagementStorePlugins } from 'src'
 
 Vue.use(Vuex)
 Vue.use(VueXhrState)

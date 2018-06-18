@@ -1,4 +1,4 @@
-import { api } from '../domains/config'
+import { api } from 'src/domains/config'
 import { VuexXhrCreator, VuexXhrGet } from 'vuex-xhr-state'
 
 export const readPermissions = new VuexXhrGet({
