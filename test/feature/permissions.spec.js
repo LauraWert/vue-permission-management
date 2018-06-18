@@ -3,7 +3,7 @@ import store from 'test/fake/store'
 import api from 'test/fake/api-client'
 import { setConfig } from 'src/domains/config'
 import moxios from 'moxios'
-import { addApiCalls } from 'src/domains/api'
+import addApiCalls from 'src/domains/api/add-api-calls'
 
 describe('permissions', () => {
   beforeEach(() => {
@@ -37,31 +37,31 @@ describe('permissions', () => {
     expect(hasPermission('c', 'apiPermission3')).toBe(true)
   })
 
-  // it('can set mock permissions', async () => {
-  //   mockPermissionApiCall({apiPermission1: ['c']})
-  //   await loadPermissions()
-  //
-  //   mockUserPermissions({
-  //     mockPermission: ['c'],
-  //   })
-  //
-  //   expect(hasPermission('c', 'mockPermission')).toBe(true)
-  //   expect(hasPermission('c', 'apiPermission1')).toBe(false)
-  //   resetUserPermissions()
-  // })
-  //
-  // it('can reset the mocked permissions', async () => {
-  //   mockPermissionApiCall({apiPermission2: ['c']})
-  //   await loadPermissions()
-  //   mockUserPermissions({
-  //     mockPermission: ['c'],
-  //   })
-  //
-  //   resetUserPermissions()
-  //
-  //   expect(hasPermission('c', 'mockPermission')).toBe(false)
-  //   expect(hasPermission('c', 'apiPermission2')).toBe(true)
-  // })
+  it('can set mock permissions', async () => {
+    mockPermissionApiCall({apiPermission1: ['c']})
+    await loadPermissions()
+
+    mockUserPermissions({
+      mockPermission: ['c'],
+    })
+
+    expect(hasPermission('c', 'mockPermission')).toBe(true)
+    expect(hasPermission('c', 'apiPermission1')).toBe(false)
+    resetUserPermissions()
+  })
+
+  it('can reset the mocked permissions', async () => {
+    mockPermissionApiCall({apiPermission2: ['c']})
+    await loadPermissions()
+    mockUserPermissions({
+      mockPermission: ['c'],
+    })
+
+    resetUserPermissions()
+
+    expect(hasPermission('c', 'mockPermission')).toBe(false)
+    expect(hasPermission('c', 'apiPermission2')).toBe(true)
+  })
 
 })
 

@@ -1,4 +1,4 @@
-import { MockedUserPermissions } from 'src/domains/permissions/mocked-permissions'
+import { MockedUserPermissions } from 'src/domains/permissions/mocked-user-permissions'
 import { isAuthenticated, getCurrentUserId, store } from 'src/domains/config'
 import getStorePermissions from 'src/domains/permissions/get-store-permissions'
 import permissionsContains from 'src/domains/permissions/permissions-contains'
@@ -19,7 +19,7 @@ function getPermissions () {
 }
 
 export function hasPermission (verb, noun) {
-  const perms = getStorePermissions(store, getCurrentUserId())
+  const perms = getPermissions()
   return permissionsContains(perms, verb, noun)
 }
 

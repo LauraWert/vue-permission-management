@@ -1,6 +1,6 @@
 import { api } from '../config'
 
-export const addApiCalls = () => {
+export default () => {
   api.readPermissions = (userId) => {
     return api.get('/user/' + userId + '/permission')
   }
