@@ -4,9 +4,13 @@ export default {
     IS_AUTHENTICATED_RESOLVER: 1,
     PROJECT_API: 2,
     PROJECT_STORE: 3,
+    PERMISSIONS_MOCK: 4,
   },
   data: {},
   get: function (key) {
+    if (!this.data[key]) {
+      return null
+    }
     return this.data[key]
   },
   set: function (key, val) {

@@ -1,4 +1,4 @@
-import { hasPermission, mockUserPermissions, loadPermissions, resetUserPermissions } from 'src'
+import { hasPermission, mockUserPermissions, loadPermissions, resetMockedUserPermissions } from 'src'
 import store from 'test/fake/store'
 import api from 'test/fake/api-client'
 import moxios from 'moxios'
@@ -48,7 +48,7 @@ describe('permissions', () => {
 
     expect(hasPermission('c', 'mockPermission')).toBe(true)
     expect(hasPermission('c', 'apiPermission1')).toBe(false)
-    resetUserPermissions()
+    resetMockedUserPermissions()
   })
 
   it('can reset the mocked permissions', async () => {
@@ -58,7 +58,7 @@ describe('permissions', () => {
       mockPermission: ['c'],
     })
 
-    resetUserPermissions()
+    resetMockedUserPermissions()
 
     expect(hasPermission('c', 'mockPermission')).toBe(false)
     expect(hasPermission('c', 'apiPermission2')).toBe(true)

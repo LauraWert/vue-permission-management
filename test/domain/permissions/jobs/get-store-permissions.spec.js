@@ -1,4 +1,4 @@
-import getStorePermissions from 'src/domains/permissions/jobs/get-store-permissions'
+import getStorePermissions from 'src/domains/permissions/jobs/get-permissions'
 import { readPermissions } from 'src/domains//store/permission'
 
 describe('get-store-permissions', () => {
