@@ -13,6 +13,7 @@ describe('install', () => {
     }
     const router = {
       _name: 'router',
+      beforeEach: jest.fn(),
     }
     const storeMock = {
       _name: 'store',
@@ -50,7 +51,7 @@ describe('install', () => {
       {
         _name: 'options',
         caseMode: false,
-        router: {'_name': 'router'},
+        router: {'_name': 'router', beforeEach: router.beforeEach},
         strict: true,
         userIdResolver: null,
       },
