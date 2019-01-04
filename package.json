@@ -25,7 +25,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "vue-browser-acl": "^0.8.0",
-    "vuex-xhr-state": "^0.0.14"
+    "vuex-xhr-state": ">=0.0.10"
+  },
+  "peerDependencies": {
+    "vue": ">=2.5.0",
+    "vuex": ">=3.0.1"
   },
   "devDependencies": {
     "@laura-wert/git-clean-status": "^1.0.0",
@@ -52,6 +56,9 @@
     "lint-staged": "^7.0.4",
     "moxios": "^0.4.0",
     "rimraf": "^2.6.2",
+    "vue": ">=2.5.0",
+    "vue-class-component": "^6.3.2",
+    "vuex": ">=3.0.1",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.10"
   },
