@@ -1,26 +1,30 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    parser: 'babel-eslint',
-    sourceType: 'module',
-  },
   env: {
-    browser: true,
-    jest: true,
+    node: true,
   },
-  extends: [
-    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard',
+  'extends': [
+    'plugin:vue/recommended',
+    '@vue/standard',
   ],
-  // required to lint *.vue files
-  plugins: [
-    'import',
+  'plugins': [
+    'chai-friendly',
   ],
-  globals: {
-    'ga': true, // Google Analytics
-    'cordova': true,
-    '__statics': true,
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: false,
+    },
   },
+  overrides: [
+    {
+      files: [
+        'tests/**/*.spec.js',
+      ],
+      env: {
+        mocha: true, // now **/*.test.js files' env has both es6 *and* jest
+      },
+    },
+  ],
   // add your custom rules here
   rules: {
     // allow async-await
@@ -46,6 +50,30 @@ module.exports = {
     // when the parameters of a function are on multiple lines, always one argument per line
     'function-paren-newline': ['error', 'multiline'],
     // always place a space between a function name and params
-    'space-before-function-paren': ['error', 'always'],
+    'space-before-function-paren': ['error', {
+      'anonymous': 'never',
+      'named': 'never',
+      'asyncArrow': 'always',
+    }],
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+    'padding-line-between-statements': [
+      'error',
+      { 'blankLine': 'always', 'prev': 'block-like', 'next': '*' },
+    ],
+    'no-unused-expressions': 0,
+    'chai-friendly/no-unused-expressions': 2,
+    'vue/max-attributes-per-line': [2, {
+      'singleline': 3,
+      'multiline': {
+        'max': 1,
+        'allowFirstLine': false,
+      },
+    }],
+    'vue/html-closing-bracket-newline': ['error', {
+      'singleline': 'never',
+      'multiline': 'always',
+    }],
+    'vue/html-closing-bracket-spacing': ['error'],
+    'vue/prop-name-casing': ['error'],
   },
 }

@@ -1,5 +1,17 @@
-export { default } from 'src/feature/install'
-export { mockUserPermissions, resetMockedUserPermissions, hasPermission, loadPermissions } from './feature/permissions'
-export { createGlobalPolicy, permissionPolicy, createCrudPermissionPolicy } from './feature/policies'
+import install from 'src/feature/install'
+import setResolvers from 'src/feature/setResolvers'
+
+export default install
+export {
+  mockUserPermissions,
+  resetMockedUserPermissions,
+  hasPermission,
+  loadPermissions,
+} from './feature/permissions'
+export {
+  createGlobalPolicy,
+  permissionPolicy,
+  createCrudPermissionPolicy,
+} from './feature/policies'
 export { getStorePlugins } from 'src/feature/store'
-export { default as setResolvers } from 'src/feature/setResolvers'
+export { setResolvers }

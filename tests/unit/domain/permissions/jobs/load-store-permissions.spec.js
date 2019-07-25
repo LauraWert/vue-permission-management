@@ -1,16 +1,19 @@
 import loadStorePermissions from 'src/domains/permissions/jobs/load-store-permissions'
 import { readPermissions } from 'src/domains//store/permission'
+import { expect } from 'chai'
+import sinon from 'sinon'
 
 describe('load-store-permissions', () => {
   it('can get permissions from the store', () => {
     const store = {
-      dispatch: jest.fn().mockReturnValue('dispatchReturn'),
+      // eslint-disable-next-line no-undef
+      dispatch: sinon.stub().returns('dispatchReturn'),
     }
 
     const result = loadStorePermissions(store, 123)
 
-    expect(result).toBe('dispatchReturn')
-    expect(store.dispatch).toBeCalledWith(
+    expect(result).to.equal('dispatchReturn')
+    expect(store.dispatch).to.be.calledWith(
       readPermissions.fetch(),
       123,
     )

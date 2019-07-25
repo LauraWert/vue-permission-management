@@ -1,4 +1,5 @@
 import permissionsContains from 'src/domains/permissions/jobs/permissions-contains'
+import { expect } from 'chai'
 
 describe('permissions-contains', () => {
   it('return true when permission in permissions', () => {
@@ -8,7 +9,7 @@ describe('permissions-contains', () => {
 
     const res = permissionsContains(permissions, 'verb', 'noun')
 
-    expect(res).toBe(true)
+    expect(res).to.equal(true)
   })
 
   it('return false when verb not in permissions', () => {
@@ -18,7 +19,7 @@ describe('permissions-contains', () => {
 
     const res = permissionsContains(permissions, 'otherVerb', 'noun')
 
-    expect(res).toBe(false)
+    expect(res).to.equal(false)
   })
 
   it('return false when noun not in permissions', () => {
@@ -28,6 +29,6 @@ describe('permissions-contains', () => {
 
     const res = permissionsContains(permissions, 'verb', 'otherNoun')
 
-    expect(res).toBe(false)
+    expect(res).to.equal(false)
   })
 })

@@ -7,7 +7,7 @@ import setProjectApi from 'src/domains/api/jobs/set-project-api'
 import setProjectStore from 'src/domains/store/jobs/set-project-store'
 
 export default {
-  install: function (Vue, router, store, policySetter, api, getCurrentUserResolver, currentUserIdResolver, isAuthenticatedResolver, options = {}) {
+  install: function(Vue, router, store, policySetter, api, getCurrentUserResolver, currentUserIdResolver, isAuthenticatedResolver, options = {}) {
     options = Object.assign(
       {
         caseMode: false,

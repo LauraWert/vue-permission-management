@@ -7,16 +7,17 @@ export default {
     PERMISSIONS_MOCK: 4,
   },
   data: {},
-  get: function (key) {
+  get: function(key) {
     if (!this.data[key]) {
       return null
     }
+
     return this.data[key]
   },
-  set: function (key, val) {
+  set: function(key, val) {
     this.data[key] = val
   },
-  reset: function (key) {
+  reset: function(key) {
     this.data[key] = null
   },
 }

@@ -11,67 +11,66 @@
   "author": "",
   "license": "MIT",
   "private": false,
-  "main": "dist/",
+  "main": "dist/index.umd.min.js",
   "files": [
+    "package.json",
     "dist/"
   ],
   "scripts": {
-    "build": "yarn lint && rimraf ./dist && webpack --config ./webpack.config.js",
-    "release": "yarn git-clean-status && yarn build && yarn publish",
-    "lint": "eslint --ext .js src test",
-    "test": "jest",
-    "test-ci": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage jest --coverage && cat ./coverage/lcov.info | codacy-coverage"
+    "build": "yarn lint && yarn clean && yarn build:main",
+    "build:main": "vue-cli-service build --target lib --name org/index src/index.js && mv ./dist/org/index.umd.min.js ./dist/ && rm -rf ./dist/org && rm -rf ./dist/demo.html",
+    "clean": "rimraf ./dist && rimraf ./lib",
+    "release": "yarn git-clean-status &&  yarn build && yarn publish",
+    "lint": "vue-cli-service lint --fix",
+    "test:unit": "vue-cli-service test:unit --include tests/unit/setup.js tests/unit/",
+    "test:unit-s": "vue-cli-service test:unit --include tests/unit/setup.js",
+    "test-ci": "yarn cover && cat ./coverage/lcov.info | yarn codacy-coverage",
+    "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcovonly yarn test:unit"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "vue-browser-acl": "^0.8.0",
-    "vuex-xhr-state": ">=0.0.10"
   },
   "peerDependencies": {
+    "axios": ">=0.18.0",
     "vue": ">=2.5.0",
-    "vuex": ">=3.0.1"
+    "vue-browser-acl": "^0.10.0",
+    "vuex": ">=3.0.1",
+    "vuex-xhr-state": ">=0.0.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.4",
     "@laura-wert/git-clean-status": "^1.0.0",
-    "babel-core": "^6.0.0",
-    "babel-eslint": "^8.2.1",
-    "babel-jest": "^22.4.1",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "codacy-coverage": "^3.1.0",
-    "eslint": "^4.15.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^5.2.0",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^3.0.1",
+    "@vue/cli-plugin-babel": "3.9.2",
+    "@vue/cli-plugin-eslint": "^3.9.2",
+    "@vue/cli-plugin-unit-mocha": "^3.9.0",
+    "@vue/cli-service": "^3.9.2",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "axios": "^0.19.0",
+    "chai": "^4.2.0",
+    "codacy-coverage": "^3.4.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-vue": "^5.2.3",
     "flush-promises": "^1.0.0",
-    "husky": "^1.0.0-rc.2",
-    "jest": "^22.4.2",
     "lint-staged": "^7.0.4",
     "moxios": "^0.4.0",
-    "rimraf": "^2.6.2",
-    "vue": ">=2.5.0",
-    "vue-class-component": "^6.3.2",
-    "vuex": ">=3.0.1",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.10"
+    "rimraf": "^2.6.3",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0",
+    "vee-validate": "^2.2.12",
+    "vue": "^2.6.10",
+    "vue-browser-acl": "^0.10.0",
+    "vuex": "^3.1.1",
+    "vuex-xhr-state": "^1.0.4"
+  },
+  "resolutions": {
+    "jsdom": "14.0.0"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 10"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js}": [
       "eslint --fix",

@@ -3,17 +3,19 @@ import getCurrentUserId from 'src/domains/auth/jobs/get-current-user-id'
 import isAuthenticated from 'src/domains/auth/jobs/is-authenticated'
 import getProjectApi from 'src/domains/api/jobs/get-project-api'
 import getProjectStore from 'src/domains/store/jobs/get-project-store'
+import { expect } from 'chai'
+import sinon from 'sinon'
 
-jest.mock('vue-browser-acl', () => ({_name: 'vueBrowserAclMock'}))
+// jest.mock('vue-browser-acl', () => ({ _name: 'vueBrowserAclMock' }))
 
 describe('install', () => {
   it('can install the package', () => {
     const VueMock = {
-      use: jest.fn(),
+      use: sinon.stub(),
     }
     const router = {
       _name: 'router',
-      beforeEach: jest.fn(),
+      beforeEach: sinon.stub(),
     }
     const storeMock = {
       _name: 'store',
@@ -39,19 +41,19 @@ describe('install', () => {
 
     installer.install(VueMock, router, storeMock, policySetter, apiMock, getCurrentUserResolver, currentUserIdResolver, isAuthenticatedResolver, options)
 
-    expect(isAuthenticated()).toEqual(isAuthenticatedResolver())
-    expect(getCurrentUserId()).toEqual(currentUserIdResolver())
-    expect(getProjectStore()).toBe(storeMock)
-    expect(getProjectApi()).toBe(apiMock)
+    expect(isAuthenticated()).to.deep.equal(isAuthenticatedResolver())
+    expect(getCurrentUserId()).to.deep.equal(currentUserIdResolver())
+    expect(getProjectStore()).to.equal(storeMock)
+    expect(getProjectApi()).to.equal(apiMock)
 
-    expect(VueMock.use).toBeCalledWith(
-      {_name: 'vueBrowserAclMock'},
+    expect(VueMock.use).to.be.calledWith(
+      sinon.match.any,
       getCurrentUserResolver,
       policySetter,
       {
         _name: 'options',
         caseMode: false,
-        router: {'_name': 'router', beforeEach: router.beforeEach},
+        router: { '_name': 'router', beforeEach: router.beforeEach },
         strict: true,
         userIdResolver: null,
       },

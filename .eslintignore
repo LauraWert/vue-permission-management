@@ -1,0 +1,3 @@
+// this is for the auto lint fix on save.
+*.json
+*.min.js

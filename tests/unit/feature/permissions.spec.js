@@ -1,12 +1,18 @@
-import { hasPermission, mockUserPermissions, loadPermissions, resetMockedUserPermissions } from 'src'
-import store from 'test/fake/store'
-import api from 'test/fake/api-client'
+import {
+  hasPermission,
+  loadPermissions,
+  mockUserPermissions,
+  resetMockedUserPermissions,
+} from 'src'
+import store from 'tests/fake/store'
+import api from 'tests/fake/api-client'
 import moxios from 'moxios'
 import addApiCalls from 'src/domains/api/jobs/add-api-calls'
 import setCurrentUserIdResolver from 'src/domains/auth/jobs/set-current-user-id-resolver'
 import setIsAuthenticatedResolver from 'src/domains/auth/jobs/set-is-authenticated-resolver'
 import setProjectApi from 'src/domains/api/jobs/set-project-api'
 import setProjectStore from 'src/domains/store/jobs/set-project-store'
+import { expect } from 'chai'
 
 describe('permissions', () => {
   beforeEach(() => {
@@ -29,30 +35,30 @@ describe('permissions', () => {
   })
 
   it('Can load permissions from the api into the store', async () => {
-    mockPermissionApiCall({apiPermission3: ['c']})
+    mockPermissionApiCall({ apiPermission3: ['c'] })
 
     await loadPermissions()
 
-    expect(moxios.requests.mostRecent().config.url).toBe('/user/123/permission')
-    expect(moxios.requests.mostRecent().config.method).toBe('get')
-    expect(hasPermission('c', 'apiPermission3')).toBe(true)
+    expect(moxios.requests.mostRecent().config.url).to.equal('/user/123/permission')
+    expect(moxios.requests.mostRecent().config.method).to.equal('get')
+    expect(hasPermission('c', 'apiPermission3')).to.equal(true)
   })
 
   it('can set mock permissions', async () => {
-    mockPermissionApiCall({apiPermission1: ['c']})
+    mockPermissionApiCall({ apiPermission1: ['c'] })
     await loadPermissions()
 
     mockUserPermissions({
       mockPermission: ['c'],
     })
 
-    expect(hasPermission('c', 'mockPermission')).toBe(true)
-    expect(hasPermission('c', 'apiPermission1')).toBe(false)
+    expect(hasPermission('c', 'mockPermission')).to.equal(true)
+    expect(hasPermission('c', 'apiPermission1')).to.equal(false)
     resetMockedUserPermissions()
   })
 
   it('can reset the mocked permissions', async () => {
-    mockPermissionApiCall({apiPermission2: ['c']})
+    mockPermissionApiCall({ apiPermission2: ['c'] })
     await loadPermissions()
     mockUserPermissions({
       mockPermission: ['c'],
@@ -60,12 +66,12 @@ describe('permissions', () => {
 
     resetMockedUserPermissions()
 
-    expect(hasPermission('c', 'mockPermission')).toBe(false)
-    expect(hasPermission('c', 'apiPermission2')).toBe(true)
+    expect(hasPermission('c', 'mockPermission')).to.equal(false)
+    expect(hasPermission('c', 'apiPermission2')).to.equal(true)
   })
 })
 
-function mockPermissionApiCall (response) {
+function mockPermissionApiCall(response) {
   moxios.stubRequest('/user/123/permission', {
     status: 200,
     response,

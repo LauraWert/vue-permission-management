@@ -6,24 +6,24 @@ import getCurrentUserId from 'src/domains/auth/jobs/get-current-user-id'
 import isAuthenticated from 'src/domains/auth/jobs/is-authenticated'
 import mockUserPermissionsJob from 'src/domains/permissions/jobs/mock-user-permissions'
 
-export function mockUserPermissions (permissions) {
+export function mockUserPermissions(permissions) {
   mockUserPermissionsJob(permissions)
 }
 
-export function resetMockedUserPermissions () {
+export function resetMockedUserPermissions() {
   mockUserPermissionsJob(null)
 }
 
-function getPermissions () {
+function getPermissions() {
   return getPermissionsJob(getProjectStore(), getCurrentUserId())
 }
 
-export function hasPermission (verb, noun) {
+export function hasPermission(verb, noun) {
   const perms = getPermissions()
   return permissionsContains(perms, verb, noun)
 }
 
-export function loadPermissions () {
+export function loadPermissions() {
   if (!isAuthenticated()) {
     return new Promise(resolve => resolve([]))
   }
