@@ -1,6 +1,6 @@
 {
   "name": "@laura-wert/vue-permission-management",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repository": {
     "url": "github.com/LauraWert/vue-permission-management",
     "type": "git"
@@ -27,8 +27,7 @@
     "test-ci": "yarn cover && cat ./coverage/lcov.info | yarn codacy-coverage",
     "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcovonly yarn test:unit"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "axios": ">=0.18.0",
     "vue": ">=2.5.0",
