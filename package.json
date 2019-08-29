@@ -48,12 +48,14 @@
     "axios": "^0.19.0",
     "chai": "^4.2.0",
     "codacy-coverage": "^3.4.0",
+    "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-chai-friendly": "^0.4.1",
     "eslint-plugin-vue": "^5.2.3",
     "flush-promises": "^1.0.2",
     "lint-staged": "^9.2.5",
     "moxios": "^0.4.0",
+    "nyc": "^14.1.1",
     "rimraf": "^3.0.0",
     "sinon": "^7.4.1",
     "sinon-chai": "^3.3.0",
@@ -78,5 +80,26 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 0,
+    "statements": 0,
+    "functions": 0,
+    "branches": 0,
+    "include": [
+      "src/**/*.{js,ts,vue}"
+    ],
+    "reporter": [
+      "lcov"
+    ],
+    "extension": [
+      ".js",
+      ".ts",
+      ".vue"
+    ],
+    "cache": true,
+    "all": true
   }
 }
