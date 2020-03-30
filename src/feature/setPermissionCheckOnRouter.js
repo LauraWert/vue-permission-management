@@ -1,7 +1,9 @@
 import { loadPermissions } from 'src/feature/permissions'
 
-export default function(router) {
+export default (router) => {
   router.beforeEach((to, from, next) => {
+    if (to.name === 'login') return next()
+
     if (!to.meta || !to.meta.can) {
       to.meta.can = 'meta not_set'
     }
@@ -11,6 +13,11 @@ export default function(router) {
     }
 
     return loadPermissions()
-      .then(() => next())
+      .then(() => { return next() })
+      .catch((err) => {
+        if (err.response !== undefined && err.response.status === 401) {
+          return next({ name: 'login' })
+        }
+      })
   })
 }

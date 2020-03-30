@@ -18,7 +18,10 @@ export default {
       options,
     )
 
-    addApiCalls(api)
+    if (api.readPermissions === undefined) {
+      addApiCalls(api)
+    }
+
     setPermissionCheckOnRouter(router)
 
     setProjectApi(api)
